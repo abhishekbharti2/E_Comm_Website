@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon"  href="web-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Ubuntu', sans-serif;
+        box-sizing: border-box;
+        color: rgb(0, 0, 0);
+        position: relative;
+    }
+
+    #heading-cart,
+    .space {
+        position: fixed;
+        width: 100%;
+        text-align: center;
+        color: white;
+        background-color:  var(--clr);
+        padding: 22px;
+        z-index: 3;
+    }
+
+    .space {
+        position: relative;
+        z-index: 2;
+        padding: 30px;
+    }
+
+    .cart-container {
+        margin-top: 1%;
+        display: flex;
+        flex-direction: row;
+        gap: 1px;
+        padding: 0;
+    }
+
+    /* ================================================================== */
+
+    .item-container {
+        display: flex;
+        width: 50%;
+        height: 100%;
+        flex-direction: column;
+        gap: 20px;
+        padding: 5px;
+    }
+
+    .cart-items {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: fit-content;
+        box-shadow: 0px 0px 5px 0px black;
+    }
+
+    .cart-items p {
+        padding: 5px 20px;
+    }
+
+    .cart-button {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cart-button>button,
+    .cart-button>span {
+        cursor: pointer;
+        margin: 1px;
+        width: 20px;
+        height: 25px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+
+    .cart-button>button {
+        font-size: 20px;
+    }
+
+    .cart-items img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #added-cart>a {
+        color: rgb(0, 207, 0);
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* =============================================================== */
+
+    #order-place {
+        padding: 4% 6%;
+        position: fixed;
+        transform: translateX(100%);
+    }
+
+    summary {
+        height: fit-content;
+        width: 100%;
+        /* border-radius: 10%; */
+        padding: 5%;
+        border: 1px solid black;
+    }
+
+    #order-place summary>h3,
+    summary li {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 5px;
+        margin: 1px;
+        width: 100%;
+    }
+
+    #order-place>button {
+        font-size: 20px;
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: rgb(9, 255, 0);
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    #order-place>button:hover {
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 0px 3px 0px black;
+    }
+
+    #in-procode {
+        padding: 10px;
+        border-radius: 5px;
+        background: none;
+        width: 200px;
+        border: none;
+    }
+
+    /* ======================================================================= */
+    @media (max-width:1100px) {
+
+        .cart-container {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #added-cart {
+            padding: 50px;
+        }
+
+        #order-place {
+            position: relative;
+            order: 2;
+            transform: none;
+        }
+
+        .item-container {
+            display: flex;
+            width: 100%;
+            height: fit-content;
+            flex-direction: column;
+            gap: 10px;
+            padding: 5px;
+        }
+
+    }
+
+    @media (max-width:650px) {
+        #added-cart {
+            padding: 0px;
+        }
+
+        .cart-items {
+            box-shadow: none;
+        }
+
+        .cart-items p {
+            margin-left: 5px;
+            padding: 2px;
+            font-size: 70%;
+        }
+
+        .cart-items img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #heading-cart {
+            font-size: 20px;
+        }
+    }
+</style>
+
+<body>
+    <h1 id="heading-cart">Shopping Cart <i class="fa fa-shopping-cart" style="font-size:30px; color: white;"></i></h1>
+    <div class="space">space</div>
+    <div class="cart-container">
+        <div class="item-container" id="added-cart">
+            <li id="item-1" class="cart-items">
+                <img src="https://4.imimg.com/data4/RU/VC/MY-11853389/men-s-jackets.jpg" alt="">
+                <div class="cart-button">
+                    <button id="add1">+</button>
+                    <span id="addorremove1">1</span>
+                    <button id="remove1">-</button>
+                </div>
+                <p>
+                    <span style="font-weight: bold;" id="productname1">Brown Leather Jacket</span> <br>
+                    <span>Rs.<strong id="item1-rate">1263</strong></span>
+                </p>
+            </li>
+            <li id="item-2" class="cart-items">
+                <img src="https://m.media-amazon.com/images/I/71mR1c5l70L._AC_UY350_.jpg" alt="">
+                <div class="cart-button">
+                    <button id="add2">+</button>
+                    <span id="addorremove2">1</span>
+                    <button id="remove2">-</button>
+                </div>
+                <p>
+                    <span style="font-weight: bold;" id="productname2">Golden Women watch</span> <br>
+                    <span>Rs.<strong id="item2-rate">389</strong></span>
+                </p>
+            </li>
+            <li id="item-3" class="cart-items">
+                <img src="https://i.pinimg.com/originals/a3/33/db/a333db98d3a3c2fe3d50767851209e5c.jpg" alt="">
+                <div class="cart-button">
+                    <button id="add3">+</button>
+                    <span id="addorremove3">1</span>
+                    <button id="remove3">-</button>
+                </div>
+                <p>
+                    <span style="font-weight: bold;" id="productname3">Maroon Red full Kurti</span> <br>
+                    <span>Rs.<strong id="item3-rate">599</strong></span>
+                </p>
+            </li>
+
+            <a href="index.html#t-shirts">Add More</a>
+        </div>
+        <div class="item-container" id="order-place">
+            <h2>Order Summary</h2>
+            <summary id="order-summary">
+
+
+            </summary>
+            <input type="text" id="in-procode" placeholder="Apply Promo Code">
+            <button>Place Order</button>
+        </div>
+    </div>
+</body>
+<script>
+    const ordersummary = document.getElementById('order-summary');
+    let raten1 = parseInt(document.getElementById(`item1-rate`).textContent, 10)
+    let raten2 = parseInt(document.getElementById(`item2-rate`).textContent, 10)
+    let raten3 = parseInt(document.getElementById(`item3-rate`).textContent, 10)
+    let productname1 = document.getElementById(`productname1`).textContent;
+    let productname2 = document.getElementById(`productname2`).textContent;
+    let productname3 = document.getElementById(`productname3`).textContent;
+    let discount = -300;
+    ordersummary.innerHTML = `
+        <li class="place-item">${productname1}<span id="sumsum1">${raten1}</span></li>
+        <li class="place-item">${productname2}<span id="sumsum2">${raten2}</span></li>
+        <li class="place-item">${productname3}<span id="sumsum3">${raten3}</span></li>
+        <li>Delivery Charge <s>60</s></li>
+        <li>Discount <span id='discountt'>${discount}</span></li>
+        <h3>Total <span>Rs. <span id="totalamount">${(raten1 + raten2 + raten3 + discount)}</span></span></h3>`
+
+    function addtocart(a, num) {
+        let add = document.getElementById(`add${a}`);
+        let remove = document.getElementById(`remove${a}`);
+        let addorremove = document.getElementById(`addorremove${a}`);
+        let rate = parseInt(document.getElementById(`item${a}-rate`).textContent, 10);
+        let sumsum = document.getElementById(`sumsum${a}`);
+
+        add.addEventListener('click', function () {
+            num = ++addorremove.textContent;
+            discount = discount-100;
+            sumsum.textContent = rate * num
+            totalamount.textContent = (parseInt(sumsum1.textContent)+parseInt(sumsum2.textContent)+parseInt(sumsum3.textContent)) + discount;
+            discountt.textContent = discount;
+        })
+        remove.addEventListener('click', function () {
+            if (parseInt(addorremove.textContent, 10) > 0) {
+                num = --addorremove.textContent;
+                discount = discount+100;
+                sumsum.textContent = rate * num
+                totalamount.textContent = (parseInt(sumsum1.textContent)+parseInt(sumsum2.textContent)+parseInt(sumsum3.textContent)) + discount;
+                discountt.textContent = discount;
+            }
+        })
+    }
+    let m = 0, k = 0, o = 0;
+    addtocart(1, m);
+    addtocart(2, k);
+    addtocart(3, o);
+</script>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="web-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        /* height: 100vh; */
+    }
+
+    footer {
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1px;
+        width: 100%;
+        height: 100vh;
+        transform: translateY(90%);
+    }
+
+    footer button {
+        width: 100%;
+        height: 10%;
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+        text-align: center;
+        color: black;
+        text-decoration: none;
+        border: 1px solid white;
+        transition: all .4s;
+        cursor: pointer;
+    }
+
+
+
+    footer button:hover {
+        background: transparent;
+        color: rgb(255, 255, 255);
+    }
+
+    /* ------------------------------ Section Starts From here ------------------------------ */
+    section {
+        height: 100%;
+        margin: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: .8rem;
+        overflow: unset;
+    }
+
+    section h2 {
+        text-align: center;
+    }
+
+    table {
+        width: 100%;
+        text-align: center;
+    }
+
+    th {
+        width: 100px;
+        padding: 4px 0;
+        background-color: rgb(99, 99, 99);
+    }
+
+    td {
+        padding: 15px 0;
+    }
+
+    td:last-of-type {
+        color: rgb(255, 245, 98);
+    }
+
+    /* --------------------------- Individual Section Starts From Here --------------------------- */
+
+    #history tbody tr td:nth-of-type(2) {
+        color: rgb(134, 245, 119);
+    }
+
+    /* #history{
+        display: none;
+    } */
+
+    #refund {
+        display: none;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .status {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 3rem;
+        padding: 7rem;
+        width: 50%;
+        height: fit-content;
+    }
+
+    #statusline {
+        z-index: 1;
+        position: absolute;
+        width: 5px;
+        background-color: rgb(2, 219, 2);
+        height: 94px;
+        border-radius: 10px;
+        transition: all 1s linear;
+    }
+
+    .status li {
+        z-index: 2;
+        cursor: pointer;
+        display: inline-block;
+        text-wrap: nowrap;
+    }
+
+    .promotion {
+        width: 50%;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slider {
+        width: 100%;
+        height: auto;
+        display: flex;
+        transition: 0.5s;
+        overflow: hidden;
+    }
+
+    .allimages {
+        display: flex;
+        position: relative;
+        border-radius: 10px;
+        transition: all 0.5s;
+    }
+
+    .slimage {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 2px 5px rgb(62 27 155);
+    }
+
+    .slidebtn {
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        top: 80%;
+    }
+
+    .slidebtn input {
+
+        margin: 2px;
+        cursor: pointer;
+        width: 5%;
+        height: auto;
+    }
+
+    .do-red {
+        color: rgb(255, 77, 77);
+    }
+
+    @media (max-width:1000px) {
+        table {
+            font-size: small;
+        }
+
+        .status {
+            padding: 0;
+            margin: 0;
+            width: fit-content;
+        }
+
+        .promotion {
+            width: 60%;
+        }
+
+        #refund {
+            transform: translateY(15%);
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .status li,
+        tr td,
+        tr th {
+            font-size: 10px;
+        }
+
+        .promotion {
+            width: 70%;
+        }
+    }
+</style>
+
+<body>
+    <!---------------------------------- Section Starts From here ---------------------------------->
+    <section id="history">
+        <h2>Transaction History</h2>
+        <table>
+
+            <thead>
+                <tr>
+                    <th> Activity </th>
+                    <th>Status</th>
+                    <th> Date and time </th>
+                    <th> Amount </th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+
+            </tbody>
+
+        </table>
+    </section>
+
+    <section id="refund">
+    <!-------------------------------------- Refund Status -------------------------------------->
+        <div class="status">
+            <div id="statusline"></div>
+            <li>&#10162; Your Request Has Been Reached To Ejoyr Team</li>
+            <li>&#10162; Your Request is in Pending for Review</li>
+            <li>&#10162; Your Request Has Been Approved By An Agent</li>
+            <li>&#10162; Your Refund Is Initialised</li>
+            <li>&#10162; We Have Refunded Back Your Money</li>
+        </div>
+        <div class="promotion">
+            <div class="slider">
+                <div class="allimages">
+                    <img class="slimage"
+                        src="https://media.gettyimages.com/id/612016408/photo/texting-on-the-phone.jpg?s=2048x2048&w=gi&k=20&c=PL-L0oYb5HTM4SiG5v-8GU51vXWulxCSCAG-AdPYlR0="
+                        alt="">
+                    <img class="slimage"
+                        src="https://media.gettyimages.com/id/1385118921/photo/shot-of-a-young-woman-shopping-in-an-organic-store.jpg?s=2048x2048&w=gi&k=20&c=mxsSg-Nzr-N2NLTDdz4ex-TYPfZornex6_TjZmG188A="
+                        alt="">
+                    <img class="slimage"
+                        src="https://media.gettyimages.com/id/1324486197/photo/portrait-of-young-indian-student-or-businesswoman-outside-building-in-city-street.jpg?s=2048x2048&w=gi&k=20&c=BR70eCQIXDHLkyaofk8uwmufFKMLM22ueE_6qh_D8vY="
+                        alt="">
+                    <img class="slimage"
+                        src="https://media.gettyimages.com/id/946562884/photo/close-up-of-businessman-adjusting-necktie.jpg?s=2048x2048&w=gi&k=20&c=ZNzWYwCicb5qhnaQ3IQLpZXYTICDpOiHyUYMfciUJfg="
+                        alt="">
+                    <img class="slimage"
+                        src="https://media.gettyimages.com/id/172363034/photo/buying-a-wristwatch.jpg?s=2048x2048&w=gi&k=20&c=-Jn8lB-uXrTWKViNyP-Q0p0qzrgmn56bGQfyX2FW1N0="
+                        alt="">
+                </div>
+            </div>
+            <div class="slidebtn">
+                <input type="radio" name="btn" id="btn-1" checked>
+                <input type="radio" name="btn" id="btn-2">
+                <input type="radio" name="btn" id="btn-3">
+                <input type="radio" name="btn" id="btn-4">
+                <input type="radio" name="btn" id="btn-5">
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ------------------------ Bottom Nav Starts From Here ------------------------ -->
+    <footer>
+        <button onclick="kuchbhi1()">Transaction History</button>
+        <button onclick="kuchbhi2()">Refund</button>
+    </footer>
+</body>
+<script>
+    const history = document.getElementById('history');
+    const refund = document.getElementById('refund');
+
+    function kuchbhi1() {
+        refund.style.display = 'none';
+        history.style.display = 'flex';
+    }
+    function kuchbhi2() {
+        refund.style.display = 'flex';
+        history.style.display = 'none';
+    }
+
+    const btn1 = document.getElementById('btn-1');
+    const btn2 = document.getElementById('btn-2');
+    const btn3 = document.getElementById('btn-3');
+    const btn4 = document.getElementById('btn-4');
+    const btn5 = document.getElementById('btn-5');
+    const slider = document.querySelector('.slider');
+    const allImages = document.querySelector('.allimages');
+
+    btn1.addEventListener('change', function () {
+        allImages.style.transform = 'translateX(0px)';
+    });
+
+    btn2.addEventListener('change', function () {
+        allImages.style.transform = 'translateX(-100%)';
+    });
+
+    btn3.addEventListener('change', function () {
+        allImages.style.transform = 'translateX(-200%)';
+    });
+
+    btn4.addEventListener('change', function () {
+        allImages.style.transform = 'translateX(-300%)';
+    });
+    btn5.addEventListener('change', function () {
+        allImages.style.transform = 'translateX(-400%)';
+    });
+
+    let num = 0;
+    setInterval(() => {
+
+        if (num == 0) {
+            btn2.checked = true;
+            btn2.dispatchEvent(new Event('change'));
+            num = 1;
+        }
+        else if (num == 1) {
+            btn3.checked = true;
+            btn3.dispatchEvent(new Event('change'));
+            num = 2;
+        }
+        else if (num == 2) {
+            btn4.checked = true;
+            btn4.dispatchEvent(new Event('change'));
+            num = 3;
+        }
+        else if (num == 3) {
+            btn5.checked = true;
+            btn5.dispatchEvent(new Event('change'));
+            num = 4;
+        }
+        else if (num == 4) {
+            btn1.checked = true;
+            btn1.dispatchEvent(new Event('change'));
+            num = 0;
+        }
+
+    }, 3000);
+    const tablebody = document.getElementById('tablebody');
+
+    for (let i = 0; i < 10; i++) {
+
+        tablebody.innerHTML += `<tr>
+                    <td>Purchased Black Shirt</td>
+                    <td>Successful</td>
+                    <td>12/10/2023, 12:05 pm</td>
+                    <td>239.00</td>
+                </tr>
+                <tr>
+                    <td>Purchased Black Shirt</td>
+                    <td><span class="do-red">Failed</span></td>
+                    <td>12/10/2023, 12:05 pm</td>
+                    <td>239.00</td>
+                </tr>`
+    }
+</script>
+
+</html>
